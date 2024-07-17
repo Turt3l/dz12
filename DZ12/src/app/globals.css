@@ -1,0 +1,62 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background-color: black;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.nav-bar--hidden {
+  transform: translateY(-100%);
+}
+.headerContainer {
+  z-index: 100000;
+  color: white;
+  width: 100%;
+  align-items: center;
+  display: flex;
+  height: 80px;
+  position: fixed;
+  top: 0;
+  background-color: black;
+  transition: transform 150ms ease-in-out;
+}
+
+#set-height {
+  display: block;
+}
+#v0 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.wrapper {
+  height: 500vh;
+}
+
+#v0 {
+  position: fixed;
+  top: 0;
+  z-index: -1000;
+  left: 0;
+  width: 100%;
+}
+#scrollSection {
+  display: block;
+}
