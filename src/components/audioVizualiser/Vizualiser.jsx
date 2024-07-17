@@ -12,6 +12,16 @@ const Visualizer = () => {
   const canvasRef = useRef(null);
   const requestRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setDimensions({
+        width: window.innerWidth / 2.5,
+        height: window.innerHeight / 2.5,
+      });
+    }
+  }, []);
 
   useEffect(() => {
     if (isPlaying) {
@@ -21,12 +31,11 @@ const Visualizer = () => {
     }
 
     return () => cancelAnimationFrame(requestRef.current);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isPlaying]);
 
   useEffect(() => {
     if (canvasRef.current) {
-      drawCanvas(); // Draw the canvas once when the component mounts
+      drawCanvas();
     }
   }, []);
 
@@ -125,8 +134,8 @@ const Visualizer = () => {
       <canvas
         ref={canvasRef}
         style={{ background: "#FFFFFF" }}
-        width={window.innerWidth / 2.5}
-        height={window.innerHeight / 2.5}
+        width={dimensions.width}
+        height={dimensions.height}
       />
       <button
         onClick={togglePlay}
