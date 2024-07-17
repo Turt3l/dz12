@@ -125,8 +125,8 @@ const Visualizer = () => {
       <canvas
         ref={canvasRef}
         style={{ background: "#FFFFFF" }}
-        width={window.innerWidth / 2.5}
-        height={window.innerHeight / 2.5}
+        width={typeof window !== "undefined" ? window.innerWidth / 2.5 : 0}
+        height={typeof window !== "undefined" ? window.innerHeight / 2.5 : 0}
       />
       <button
         onClick={togglePlay}

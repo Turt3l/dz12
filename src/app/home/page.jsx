@@ -2,17 +2,22 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import dynamic from "next/dynamic";
 import image from "../../media/img/DZ12_Carbon_Mjolner_4.png";
 import logo from "../../media/img/DZ12.svg";
 import suspension from "../../media/img/suspension.jpg";
 import brakes from "../../media/img/brakes.jpg";
 import engine from "../../media/img/engine_photo.jpg";
-import interior1 from "../../media/img/interior1.jpg"; // Add the path to the first interior image
-import interior2 from "../../media/img/interior2.jpg"; // Add the path to the second interior image
+import interior1 from "../../media/img/interior1.jpg";
+import interior2 from "../../media/img/interior2.jpg";
 import { Krona_One } from "next/font/google";
-import Visualizer from "@/components/audioVizualiser/Vizualiser";
 import SampleTable from "@/components/table/table";
 import VideoScroll from "@/components/videoScroll/VideoScroll";
+
+const Visualizer = dynamic(
+  () => import("@/components/audioVizualiser/Vizualiser"),
+  { ssr: false }
+);
 
 const ImageElement = styled.div`
   background-image: url(${image.src});
