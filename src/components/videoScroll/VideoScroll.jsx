@@ -81,7 +81,7 @@ export default function VideoScroll() {
       >
         <source
           type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
-          src="https://cdn.discordapp.com/attachments/1024035073948930159/1262749235112181860/0001-0060.mp4?ex=6697ba5e&is=669668de&hm=29cb3b9cb826fe8b64fb276d7207a7ce152135630e71ee0663d2f85a8e5517eb&"
+          src="/video.mp4"
         ></source>
       </video>
     </div>
