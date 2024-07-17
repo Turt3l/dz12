@@ -215,7 +215,7 @@ export default function Home() {
     const handleScroll = () => {
       parallaxRefs.current.forEach((element) => {
         if (inViewElements.has(element)) {
-          const scrollTop = window.scrollY;
+          const scrollTop = window?.scrollY;
           const elementTop = element.getBoundingClientRect().top + scrollTop;
           const offset = (scrollTop - elementTop) * 0.6;
           element.style.backgroundPositionY = `${offset}px`;
@@ -244,13 +244,13 @@ export default function Home() {
     parallaxRefs.current = Array.from(elements);
     parallaxRefs.current.forEach((element) => observer.observe(element));
 
-    window.addEventListener("scroll", handleScroll);
+    window?.addEventListener("scroll", handleScroll);
 
     // Initial call to set background positions on mount
     handleScroll();
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window?.removeEventListener("scroll", handleScroll);
       parallaxRefs.current.forEach((element) => observer.unobserve(element));
     };
   }, [inViewElements]);
