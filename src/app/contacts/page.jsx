@@ -9,26 +9,47 @@ const BannerContainer = styled.div`
   position: relative;
   text-align: center;
   color: white;
+  width: 100%;
+  height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url(${banner.src});
+  background-position: 50% 0%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity as needed */
+    z-index: 1;
+  }
 `;
 
 const BannerText = styled.div`
-  position: absolute;
-  top: 60%;
-  letter-spacing: 3px;
-  left: 50%;
-  font-size: 35px;
-  font-weight: 500;
-  transform: translate(-50%, -50%);
+  position: relative;
+  z-index: 2;
+  text-align: center;
 `;
 
-const BannerImage = styled.div`
-  height: 30vh;
-  text-align: center;
-  background-image: url(${banner.src});
-  background-position: 50% 20%;
-  background-repeat: no-repeat;
-  background-size: cover;
-  opacity: 0.3;
+const BannerTitle = styled.h1`
+  font-size: 48px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin: 0;
+`;
+
+const BannerSubtitle = styled.h3`
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  margin: 10px 0 0 0;
 `;
 
 const ContentContainer = styled.div`
@@ -36,27 +57,15 @@ const ContentContainer = styled.div`
   padding: 40px;
 `;
 
-const ContentHeaderContainer = styled.div`
-  text-align: center;
-  margin-bottom: 40px;
-`;
-
-const ContentHeaderTitle = styled.h1`
-  font-size: 36px;
-  color: #333;
-  margin-bottom: 10px;
-`;
-
-const ContentHeaderSubtitle = styled.h3`
-  font-size: 18px;
-  color: #666;
-`;
-
 const Content = styled.div`
   display: flex;
   padding: 20px;
   box-sizing: border-box;
   justify-content: space-between;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const PhoneNumbersContainer = styled.div`
@@ -95,86 +104,63 @@ export default function Contacts() {
   return (
     <>
       <BannerContainer>
-        <BannerImage />
-        <BannerText>Contacts</BannerText>
+        <BannerText>
+          <BannerTitle>Make a Call</BannerTitle>
+          <BannerSubtitle>Or visit one of our certified dealers</BannerSubtitle>
+        </BannerText>
       </BannerContainer>
       <ContentContainer>
-        <ContentHeaderContainer>
-          <ContentHeaderTitle>Make a Call</ContentHeaderTitle>
-          <ContentHeaderSubtitle>
-            Or visit one of our certified dealers
-          </ContentHeaderSubtitle>
-        </ContentHeaderContainer>
         <Content>
           <PhoneNumbersContainer>
             <DropdownContainer>
-              <DropdownTitle>INTERNATIONAL</DropdownTitle>
+              <DropdownTitle>CROATIA</DropdownTitle>
               <DropdownContent>
-                <p>PHONE: +39 051 9597282</p>
+                <p>PHONE: +11111111</p>
                 <p>Monday to Friday</p>
-                <p>(except holidays):</p>
-                <p>8:00am to 7:00pm</p>
-                <p>(GMT+1)</p>
+                <p>9:00am to 5:00pm</p>
+                <p>(EET)</p>
               </DropdownContent>
             </DropdownContainer>
             <DropdownContainer>
-              <DropdownTitle>NORTH AMERICA</DropdownTitle>
+              <DropdownTitle>TURKEY</DropdownTitle>
               <DropdownContent>
-                <p>PHONE: +1 866 681 6276</p>
+                <p>PHONE: +11111111</p>
                 <p>Monday to Friday</p>
-                <p>(except holidays):</p>
-                <p>8:00am to 5:00pm</p>
-                <p>(EST)</p>
-              </DropdownContent>
-            </DropdownContainer>
-            <DropdownContainer>
-              <DropdownTitle>CHINA</DropdownTitle>
-              <DropdownContent>
-                <p>PHONE: +86 4001166606</p>
-                <p>Monday to Friday:</p>
-                <p>9:00am to 6:00pm</p>
-              </DropdownContent>
-            </DropdownContainer>
-            <DropdownContainer>
-              <DropdownTitle>JAPAN</DropdownTitle>
-              <DropdownContent>
-                <p>PHONE: +81 (0)120 988 889</p>
-                <p>Monday to Sunday:</p>
-                <p>9:00am to 7:00pm</p>
-                <p>(JST)</p>
+                <p>9:00am to 5:00pm</p>
+                <p>(EET)</p>
               </DropdownContent>
             </DropdownContainer>
             <DropdownContainer>
               <DropdownTitle>GERMANY</DropdownTitle>
               <DropdownContent>
-                <p>PHONE: +49 30 1234567</p>
+                <p>PHONE: +11111111</p>
                 <p>Monday to Friday</p>
-                <p>9:00am to 6:00pm</p>
-                <p>(CET)</p>
+                <p>9:00am to 5:00pm</p>
+                <p>(EET)</p>
               </DropdownContent>
             </DropdownContainer>
             <DropdownContainer>
               <DropdownTitle>NORWAY</DropdownTitle>
               <DropdownContent>
-                <p>PHONE: +47 21 123456</p>
+                <p>PHONE: +11111111</p>
                 <p>Monday to Friday</p>
                 <p>9:00am to 5:00pm</p>
-                <p>(CET)</p>
+                <p>(EET)</p>
               </DropdownContent>
             </DropdownContainer>
             <DropdownContainer>
               <DropdownTitle>SWEDEN</DropdownTitle>
               <DropdownContent>
-                <p>PHONE: +46 8 1234567</p>
+                <p>PHONE: +11111111</p>
                 <p>Monday to Friday</p>
                 <p>9:00am to 5:00pm</p>
-                <p>(CET)</p>
+                <p>(EET)</p>
               </DropdownContent>
             </DropdownContainer>
             <DropdownContainer>
               <DropdownTitle>LATVIA</DropdownTitle>
               <DropdownContent>
-                <p>PHONE: +371 6 1234567</p>
+                <p>PHONE: +11111111</p>
                 <p>Monday to Friday</p>
                 <p>9:00am to 5:00pm</p>
                 <p>(EET)</p>

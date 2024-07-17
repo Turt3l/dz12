@@ -5,6 +5,15 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/home",
+        permanent: true,
+      },
+    ];
+  },
   webpack(config, { isServer }) {
     config.module.rules.push({
       test: /\.(mp4|webm|ogg|swf|ogv)$/,
