@@ -4,6 +4,8 @@ import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import ClientWrapper from "./clientWrapper";
 import SplashScreen from "@/components/SplashScreen/SplashScreen";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,9 +19,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <ClientWrapper>
         <body className={inter.className}>
-          <Header />
-          {children}
-          <Footer />
+          <Suspense fallback={<Loading />}>
+            <Header />
+            {children}
+            <Footer />
+          </Suspense>
         </body>
       </ClientWrapper>
     </html>
