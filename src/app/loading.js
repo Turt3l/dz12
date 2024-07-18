@@ -1,3 +1,3 @@
 export default function Loading() {
-  return <div style={{ backgroundColor: black }}></div>;
+  return <div style={{ backgroundColor: "black" }}></div>;
 }
