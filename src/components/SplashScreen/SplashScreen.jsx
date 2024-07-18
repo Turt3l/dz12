@@ -36,7 +36,7 @@ const Logo = styled.img`
 export default function SplashScreen({ show, fadeOut }) {
   return (
     <SplashScreenContainer show={show} fadeOut={fadeOut}>
-      <Logo src={companyLogo} alt="Company Logo" />
+      <Logo src={companyLogo.src} alt="Company Logo" />
     </SplashScreenContainer>
   );
 }
