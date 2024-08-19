@@ -2,13 +2,15 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import image from "../../media/img/DZ12_Carbon_Mjolner_4.png";
-import logo from "../../media/img/DZ12.svg";
+import image from "../../media/img/DZ12_img.png";
+import logo from "../../media/img/DZA2.svg";
 import suspension from "../../media/img/suspension.jpg";
 import brakes from "../../media/img/brakes.jpg";
 import engine from "../../media/img/engine_photo.jpg";
-import interior1 from "../../media/img/interior1.jpg"; // Add the path to the first interior image
-import interior2 from "../../media/img/interior2.jpg"; // Add the path to the second interior image
+import chassis from "../../media/img/chassis.jpg";
+import interior1 from "../../media/img/interior1.jpg";
+import interior2 from "../../media/img/interior2.jpg";
+import gearbox from "../../media/img/gearbox.jpg"; // Assuming you have an image for the gearbox section
 import { Krona_One } from "next/font/google";
 import Visualizer from "@/components/audioVizualiser/Vizualiser";
 import SampleTable from "@/components/table/table";
@@ -20,8 +22,7 @@ const ImageElement = styled.div`
   height: 100vh;
   background-repeat: no-repeat;
   background-position: 100% 0;
-  opacity: 0.5;
-  z-index: -100;
+  z-index: 100; /* Ensure this is on top */
   position: relative;
   margin-top: 10%;
 `;
@@ -35,40 +36,14 @@ const LogoText = styled.div`
   right: 0;
   top: 30%;
   text-align: center;
-  z-index: 100;
+  z-index: 101; /* Make sure this is above the image */
   font-size: 100px;
 `;
 
-const EngineContainer = styled.div`
-  display: flex;
-  width: 100%;
-  background-color: white;
-  height: 100vh;
-`;
-
-const EngineTextContainer = styled.div`
-  width: 60%;
-  text-align: -webkit-center;
-  text-align: center;
-`;
-
-const EngineBackgroundContainer = styled.div`
-  width: 40%;
-  background-image: url(${engine.src});
-  background-repeat: no-repeat;
-  background-position: 50% 100%;
-  padding-left: 10%;
-`;
-
-const EngineText = styled.p`
-  color: black;
-  font-size: 30px;
-  font-weight: 300;
-`;
-
-const EngineHeader = styled.h2`
-  padding-bottom: 5%;
-  font-size: 45px;
+const SubText = styled.div`
+  color: white;
+  font-size: 15px;
+  margin-top: 20px;
 `;
 
 const OverviewContainer = styled.div`
@@ -99,15 +74,18 @@ const OverviewTextHeader = styled.h2`
 
 const OverviewImageContainer = styled.div`
   width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const OverviewImage = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 80%;
+  height: 60%;
   background-image: url(${logo.src});
   background-repeat: no-repeat;
-  filter: invert(100%);
-  background-position: 50% 50%;
+  background-size: contain;
+  background-position: center;
 `;
 
 const SectionContainer = styled.div`
@@ -190,24 +168,61 @@ const InteriorImage = styled.div`
   }
 `;
 
+const InteriorTextContainer = styled.div`
+  width: 100%;
+  padding: 50px;
+  text-align: center;
+`;
+
+const InteriorTextHeader = styled.h2`
+  padding-bottom: 5%;
+  font-size: 45px;
+  color: white;
+`;
+
+const InteriorText = styled.p`
+  color: white;
+  font-size: 30px;
+  font-weight: 300;
+`;
+
 const krona_One = Krona_One({ subsets: ["latin"], weight: "400" });
 
 export default function Home() {
   const parallaxRefs = useRef([]);
   const [inViewElements, setInViewElements] = useState(new Set());
-  const images = [suspension.src, brakes.src, engine.src];
+  const images = [
+    engine.src,
+    interior1.src,
+    chassis.src,
+    gearbox.src,
+    suspension.src,
+    brakes.src,
+  ];
   const texts = [
     {
+      header: "Engine",
+      text: "Our own in-house developed air-cooled flat 12 engine, in the spirit of the original, down to the iconic horizontal cooling fan and firing order. Entirely CAD developed and CNC machined from heat treated and in process heat cycled billets.",
+    },
+    {
+      header: "Interior",
+      text: "Bespoke per each client's specifications, the driver oriented analog gauges openly provide the driver all the vital information. No-nonsense, motorsports inspired interior faithful to the spirit of the original tailored with carbon fiber, leather and Alcantara.",
+    },
+    {
+      header: "Chassis",
+      text: "The DZ12 features a CFC (carbon fiber composite) monocoque/trellis (true to original) space frame hybrid chassis for increased strength and safety. A carbon fiber/honeycomb composite monocoque encapsulating the passenger compartment provides increased safety and torsional rigidity while a true to original trellis space frame has been reengineered from factory blueprints in CAD. These advancements allow us to integrate ground effects based on CFD testing to reduce drag and increase downforce.\n\nTranslation: more speed, more stability, more pleasure.",
+    },
+    {
+      header: "Gearbox",
+      text: "The DZA flat 12 is coupled to a Graziano 6 speed manual transaxle.",
+    },
+    {
       header: "Suspension",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nec primis in faucibus orci luctus et ultrices posuere cubilia curae; Vivamus sodales sapien id finibus molestie. Quisque maximus nunc",
+      text: "With a reputation that dominates every form of motorsport, there is no other option. Ohlins.\n\nOhlins TTX dampers at each corner with an integrated lifting system for no compromises. Optional electronically adjustable dampening inside the cockpit. Offering modern ride quality with enough adjustability to go from pushing physics at the Nurburgring to cruising the streets of Monaco.",
     },
     {
       header: "Brakes",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nec primis in faucibus orci luctus et ultrices posuere cubilia curae; Vivamus sodales sapien id finibus molestie. Quisque maximus nunc",
-    },
-    {
-      header: "Engine",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nec primis in faucibus orci luctus et ultrices posuere cubilia curae; Vivamus sodales sapien id finibus molestie. Quisque maximus nunc",
+      text: "Brembo's GT/R Carbon ceramic braking system is the pinnacle of stopping power. Minimizing unsprung weight improving chassis dynamics and handling characteristics.",
     },
   ];
 
@@ -258,9 +273,20 @@ export default function Home() {
   return (
     <>
       <div>
-        <ImageElement className="parallax" />
-        <LogoText className={krona_One.className}>DZ12</LogoText>
+        <ImageElement />
+        <LogoText className={krona_One.className}>
+          DZ12
+          <SubText>
+            An air-cooled flat 12 engine.
+            <br />
+            A manual gearbox.
+            <br />
+            The definitive analog driving experience.
+          </SubText>
+        </LogoText>
       </div>
+
+      {/* Overview Section */}
       <div>
         <OverviewContainer>
           <OverviewTextContainer>
@@ -277,23 +303,25 @@ export default function Home() {
           </OverviewImageContainer>
         </OverviewContainer>
       </div>
+
+      {/* Engine Section */}
       <div>
-        <EngineContainer>
-          <EngineBackgroundContainer className="parallax"></EngineBackgroundContainer>
-          <EngineTextContainer>
-            <EngineHeader>Feel the engine</EngineHeader>
-            <EngineText>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nec
-              primis in faucibus orci luctus et ultrices posuere cubilia curae;
-              Vivamus sodales sapien id finibus molestie. Quisque maximus nunc
-            </EngineText>
+        <SectionContainer>
+          <SectionImage
+            style={{ backgroundImage: `url(${images[0]})` }}
+            className="parallax"
+          />
+          <SectionTextContainer>
+            <SectionTextHeader>{texts[0].header}</SectionTextHeader>
+            <SectionText>{texts[0].text}</SectionText>
             <Visualizer />
-          </EngineTextContainer>
-        </EngineContainer>
+          </SectionTextContainer>
+        </SectionContainer>
       </div>
       <div>
-        <VideoScroll></VideoScroll>
+        <VideoScroll style={{ zIndex: 99 }} />
       </div>
+      {/* Interior Section */}
       <div>
         <InteriorSectionContainer>
           <InteriorImage
@@ -304,22 +332,69 @@ export default function Home() {
             style={{ backgroundImage: `url(${interior2.src})` }}
             className="parallax"
           />
+          <InteriorTextContainer>
+            <InteriorTextHeader>{texts[1].header}</InteriorTextHeader>
+            <InteriorText>{texts[1].text}</InteriorText>
+          </InteriorTextContainer>
         </InteriorSectionContainer>
       </div>
+
+      {/* Chassis Section */}
       <div>
-        {texts.map((text, index) => (
-          <SectionContainer key={index}>
-            <SectionImage
-              style={{ backgroundImage: `url(${images[index]})` }}
-              className="parallax"
-            />
-            <SectionTextContainer>
-              <SectionTextHeader>{text.header}</SectionTextHeader>
-              <SectionText>{text.text}</SectionText>
-            </SectionTextContainer>
-          </SectionContainer>
-        ))}
+        <SectionContainer>
+          <SectionImage
+            style={{ backgroundImage: `url(${images[2]})` }}
+            className="parallax"
+          />
+          <SectionTextContainer>
+            <SectionTextHeader>{texts[2].header}</SectionTextHeader>
+            <SectionText>{texts[2].text}</SectionText>
+          </SectionTextContainer>
+        </SectionContainer>
       </div>
+
+      {/* Gearbox Section */}
+      <div>
+        <SectionContainer>
+          <SectionImage
+            style={{ backgroundImage: `url(${images[3]})` }}
+            className="parallax"
+          />
+          <SectionTextContainer>
+            <SectionTextHeader>{texts[3].header}</SectionTextHeader>
+            <SectionText>{texts[3].text}</SectionText>
+          </SectionTextContainer>
+        </SectionContainer>
+      </div>
+
+      {/* Suspension Section */}
+      <div>
+        <SectionContainer>
+          <SectionImage
+            style={{ backgroundImage: `url(${images[4]})` }}
+            className="parallax"
+          />
+          <SectionTextContainer>
+            <SectionTextHeader>{texts[4].header}</SectionTextHeader>
+            <SectionText>{texts[4].text}</SectionText>
+          </SectionTextContainer>
+        </SectionContainer>
+      </div>
+
+      {/* Brakes Section */}
+      <div>
+        <SectionContainer>
+          <SectionImage
+            style={{ backgroundImage: `url(${images[5]})` }}
+            className="parallax"
+          />
+          <SectionTextContainer>
+            <SectionTextHeader>{texts[5].header}</SectionTextHeader>
+            <SectionText>{texts[5].text}</SectionText>
+          </SectionTextContainer>
+        </SectionContainer>
+      </div>
+
       <div>
         <SpecificationsContainer>
           <SpecificationsHeader>Specifications</SpecificationsHeader>
